@@ -1,4 +1,4 @@
-F<!doctype html>
+<!doctype html>
 <html lang="km"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Khmer Wedding Invitation Studio</title>
@@ -332,8 +332,31 @@ const SUPABASE_PUBLISHABLE_KEY="sb_publishable_Y9zukKxbCyMYYHH5RtdPqA_HspPkcIA";
 const OWNER_UID="cb42ae2c-e267-40ba-b0fc-f9532b77ae24";
  const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 let ownerSession=null;
-async function ensureOwner(){const {data:{user},error}=await sb.auth.getUser();if(error||!user)throw Error("Please sign in first.");return user}async function showOwnerGate(){if(passwordRecoveryMode){displayRecovery();return;}document.body.classList.add("owner-locked");document.querySelector("#ownerGate").hidden=false;try{await ensureOwner();document.body.classList.remove("owner-locked");document.querySelector("#ownerGate").hidden=true}catch(e){}}
-// Password recovery: Supabase emits PASSWORD_RECOVERY when the emailed link is opened.
+
+async function ensureOwner() {
+  const { data: { user }, error } = await sb.auth.getUser();
+  if (error || !user) {
+    throw Error("Please sign in first.");
+  }
+  return user;
+}
+
+async function showOwnerGate() {
+  if (passwordRecoveryMode) {
+    displayRecovery();
+    return;
+  }
+
+  document.body.classList.add("owner-locked");
+  document.querySelector("#ownerGate").hidden = false;
+
+  try {
+    await ensureOwner();
+    document.body.classList.remove("owner-locked");
+    document.querySelector("#ownerGate").hidden = true;
+  } catch (e) {}
+}
+ // Password recovery: Supabase emits PASSWORD_RECOVERY when the emailed link is opened.
 let passwordRecoveryMode=false;
 function displayRecovery(){
  passwordRecoveryMode=true;
@@ -579,7 +602,7 @@ $("#share").onclick=async()=>{
   const ownerSession = await ensureOwner();
   const slug="inv-"+crypto.randomUUID().replace(/-/g,"").slice(0,16);
   const data=clean();
-  const {error}=await sb.from("invitations").insert({owner_id: ownerSession.id, slug,​,groom_name:d.groom||"",bride_name:d.bride||"",wedding_date:d.when||null,invitation_data:data,cover_image_url:d.cover||d.cine?.[0]||d.photo||null});
+const {error}=await sb.from("invitations").insert({owner_id:ownerSession.id,slug,groom_name:d.groom||"",bride_name:d.bride||"",wedding_date:d.when||null,invitation_data:data,cover_image_url:d.cover||d.cine?.[0]||d.photo||null});
   if(error)throw error;
   link=location.href.split("#")[0]+"#"+slug;
   $("#link").value=link;

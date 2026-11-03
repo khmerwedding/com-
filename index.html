@@ -329,7 +329,7 @@ body.owner-locked #app{display:none}body.view #ownerGate{display:none}
 <script>
 const SUPABASE_URL="https://rjfueqdnrjdtvfqxqubs.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_Y9zukKxbCyMYYHH5RtdPqA_HspPkcIA";
-const OWNER_UID="cb42ae2c-e267-40ba-b0fc-f9532b77ae24";
+const OWNER_UID="cb42ae2c-e267-40ba-b0fc-19532b77ae24";
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 let ownerSession=null;
 async function ensureOwner(){const {data:{user},error}=await sb.auth.getUser();if(error||!user||user.id!==OWNER_UID)throw Error("Please sign in as the owner first.");return user}

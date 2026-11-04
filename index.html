@@ -312,18 +312,17 @@ body.owner-locked #app{display:none}body.view #ownerGate{display:none}
   <div style="font-size:12px;color:var(--ui-mut)">Type both names in this one box. A gold ♥ is added between them. To mark the split yourself, put &amp; or + between the names. Leave empty to use the couple names.</div>
   <label class="ck"><input type="checkbox" id="cvplay"> Show ▶ play button</label>
   <canvas id="cvp" width="1200" height="630" style="width:100%;border-radius:10px;border:1px solid var(--ui-line)"></canvas>
-<div class="row">
-  <button id="cvsave">Make saveable picture</button>
-  <button id="cvshare">Share picture and link</button>
-</div>
-<div class="row">
-  <button id="msgshare" type="button">Messenger — Share Picture + Link</button>
-</div>
-
   <button id="cvclear">Remove cover picture</button>
-  <img id="cvimg" alt="" hidden style="width:100%;border-radius:10px">
-  <button id="cvdel" hidden>Delete this picture</button>
-  <div id="cvnote" style="font-size:12px;color:var(--ui-mut)">Telegram, Messenger and Facebook only show a picture automatically when the link comes from your own website. This link is a plain link, so send this picture together with it.</div>
+  <div style="font-weight:600;margin-top:12px">Customize Share Preview</div>
+  <div style="font-size:12px;color:var(--ui-mut)">Store name is already editable under “Couple and text”. These fields are for each new share link.</div>
+  <label>Share title (customer or store name)<input id="shareTitle" maxlength="180" placeholder="Wedding DAVIT AND LINDA"></label>
+  <label>Share description<textarea id="shareDescription" maxlength="500" rows="3" placeholder="Wedding invitation details"></textarea></label>
+  <div style="font-weight:600">Live share preview</div>
+  <div style="border:1px solid var(--ui-line);border-radius:10px;overflow:hidden;background:var(--ui-card)">
+    <div id="sharePreviewTitle" style="font-weight:700;padding:10px 12px 2px;overflow-wrap:anywhere"></div>
+    <div id="sharePreviewDescription" style="padding:0 12px 12px;color:var(--ui-mut);font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere"></div>
+  </div>
+  <div style="font-size:12px;color:var(--ui-mut)">This is an example preview. Messenger may still show the URL. The Cloudflare Worker also needs an update to publish custom titles and descriptions.</div>
   <button class="pri" id="share">Create share link</button>
   <input id="link" readonly placeholder="Link appears here">
   <div class="row"><button id="copy">Copy</button><button id="tg">Telegram</button></div>
@@ -392,7 +391,7 @@ program:"# កម្មវិធីទី១\nថ្ងៃអាទិត្យ 
 story:"Our Love Story\nសេចក្ដីស្រឡាញ់របស់យើង\nសេចក្ដីស្រឡាញ់ដ៏ស្រស់បំព្រងរបស់យើង\n\nForever Together\nពីថ្ងៃនេះ រហូតដល់ជារៀងរហូត\nរួមដំណើរជីវិតដោយក្ដីស្រឡាញ់ និងសុភមង្គល\n\nThe Wedding Day\nថ្ងៃមង្គលរបស់យើង\n\n\nWith Love\nសូមគោរពអញ្ជើញ\nចូលរួមជាសក្ខីភាពនៃថ្ងៃដ៏មានអត្ថន័យរបស់យើង",
 thanks:"សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយសទាំងអស់ចូលរួមអបអរសាទរពិធីមង្គលការរបស់យើងខ្ញុំដោយក្ដីសោមនស្សរីករាយ។",
 map:"",phone:"",tg:"",fb:"",khqrName:"",store:"",photo:"",logo:"",bg:"",bgo:60,cine:[],gallery:[],khqr:"",music:"",
-sh:{env:1,cine:1,photo:1,countdown:1,program:1,gallery:1,khqr:1,location:1,contact:1,frame:1,frameimg:0},fr:"",cover:"",cvz:100,cvx:50,cvy:40,cvt:"",cvg:"",cvb:"",cvplay:1,intro:[],lang:"km",en:{title:"The Wedding Ceremony",lead:"Distinguished guests, ladies and gentlemen, you are warmly invited to join us in celebrating the wedding of our son and daughter, and to give us your blessings.",thanks:"We warmly invite all our honored guests to celebrate our wedding day with joy.",story:"Our Love Story\nOur love story\nThe beautiful love we share\n\nForever Together\nFrom this day forward\nSharing life with love and happiness\n\nThe Wedding Day\nOur wedding day\n\n\nWith Love\nYou are invited\nTo witness this meaningful day with us"},shape:"arch",gap:100,pal:{nv:"#08182f",nv2:"#102744",nv3:"#1d3659",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#33456b",pn2:"#1a2948"},
+sh:{env:1,cine:1,photo:1,countdown:1,program:1,gallery:1,khqr:1,location:1,contact:1,frame:1,frameimg:0},fr:"",cover:"",cvz:100,cvx:50,cvy:40,cvt:"",cvg:"",cvb:"",cvplay:1,shareTitle:"",shareDescription:"",intro:[],lang:"km",en:{title:"The Wedding Ceremony",lead:"Distinguished guests, ladies and gentlemen, you are warmly invited to join us in celebrating the wedding of our son and daughter, and to give us your blessings.",thanks:"We warmly invite all our honored guests to celebrate our wedding day with joy.",story:"Our Love Story\nOur love story\nThe beautiful love we share\n\nForever Together\nFrom this day forward\nSharing life with love and happiness\n\nThe Wedding Day\nOur wedding day\n\n\nWith Love\nYou are invited\nTo witness this meaningful day with us"},shape:"arch",gap:100,pal:{nv:"#08182f",nv2:"#102744",nv3:"#1d3659",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#33456b",pn2:"#1a2948"},
 fx:{hearts:0,butterflies:1,petals:0,leaves:0,stars:1,glow:0},trail:1,speed:100,qty:8,fsize:100,
 T:{title:{...T0,a:"smoke",dur:2.5,dl:.3,dir:"down"},names:{...T0},msg:{...T0},parents:{...T0},date:{...T0},place:{...T0},store:{...T0}}};
 const $=s=>document.querySelector(s),esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -532,7 +531,8 @@ $("#trows").innerHTML=Object.entries(TK).map(([k,n])=>`<div class="tr"><b>${n}</
  <label>Delay (s)<input type="number" min="0" max="20" step="0.5" data-t="${k}.dl"></label></div>`).join("");
 function fill(){document.querySelectorAll("[data-k]").forEach(e=>{e.value=gv(e.dataset.k);const o=$("#o-"+e.dataset.k);if(o)o.textContent=d[e.dataset.k]+(e.dataset.k==="bgo"?"%":"")});
  document.querySelectorAll("[data-fx]").forEach(e=>e.checked=!!d.fx[e.dataset.fx]);document.querySelectorAll("[data-sh]").forEach(e=>e.checked=!!d.sh[e.dataset.sh]);$("#trail").checked=!!d.trail;$("#cvplay").checked=!!d.cvplay;
- document.querySelectorAll("[data-t]").forEach(e=>{const[k,f]=e.dataset.t.split(".");e.value=d.T[k][f]});palFill()}
+ document.querySelectorAll("[data-t]").forEach(e=>{const[k,f]=e.dataset.t.split(".");e.value=d.T[k][f]});
+ $("#shareTitle").value=d.shareTitle||"";$("#shareDescription").value=d.shareDescription||"";updateSharePreview();palFill()}
 const TEXTK=["groom","bride","title","lead","parents","date","place","program","story","thanks","store"];
 const gv=k=>(editLang==="en"&&TEXTK.includes(k))?(d.en[k]||""):(d[k]??"");
 const NUM=["size","bgo","speed","qty","fsize","gap","cvz","cvx","cvy"];
@@ -598,17 +598,21 @@ function drawCover(){const c=$("#cvp");if(!c)return;const x=c.getContext("2d"),W
   const[n1,n2]=coverNames();x.textAlign="left";x.shadowColor="#000";x.shadowBlur=14;x.fillStyle="#fff";x.font=`58px '${d.titleFont}','Moul',serif`;{const hh=" ♥ ",w1=x.measureText(n1).width,w2=x.measureText(hh).width;x.fillText(n1,50,H-55);x.fillStyle=pal.gd2;x.fillText(hh,50+w1,H-55);x.fillStyle="#fff";x.fillText(n2,50+w1+w2,H-55)}
   x.fillStyle=pal.gd2;x.font="28px Georgia,serif";x.fillText("THE WEDDING INVITATION",52,H-125);x.shadowBlur=0;
   if(d.cvplay){x.beginPath();x.arc(W-110,H-110,56,0,6.3);x.fillStyle="rgba(0,0,0,.6)";x.fill();x.lineWidth=5;x.strokeStyle="#fff";x.stroke();x.beginPath();x.moveTo(W-128,H-142);x.lineTo(W-128,H-78);x.lineTo(W-76,H-110);x.closePath();x.fillStyle="#fff";x.fill()}})}
-$("#cvsave").onclick=()=>{try{const i=$("#cvimg");i.src=$("#cvp").toDataURL("image/jpeg",.9);i.hidden=false;$("#cvdel").hidden=false;$("#cvnote").textContent="Press and hold the picture (or right-click it) to save it, then send it together with the link."}catch(e){$("#cvnote").textContent="This picture cannot be exported. Upload the cover picture again."}};
-$("#cvshare").onclick=async()=>{try{const b=await new Promise(r=>$("#cvp").toBlob(r,"image/jpeg",.9)),f=new File([b],"invitation.jpg",{type:"image/jpeg"}),data={files:[f],text:(coverNames().join(" ♡ "))+(link?"\n"+link:"")};if(navigator.canShare&&navigator.canShare(data))await navigator.share(data);else $("#cvsave").click()}catch(e){if(e.name!=="AbortError")$("#cvsave").click()}};
-const CVNOTE="Telegram, Messenger and Facebook only show a picture automatically when the link comes from your own website. This link is a plain link, so send this picture together with it.";
-$("#cvdel").onclick=()=>{const i=$("#cvimg");i.removeAttribute("src");i.hidden=true;$("#cvdel").hidden=true;$("#cvnote").textContent=CVNOTE};
-$("#cvclear").onclick=()=>{d.cover="";const f=document.querySelector('[data-f="cover"]');if(f)f.value="";keep();drawCover();$("#cvdel").click();toast("Cover picture removed")};
+$("#cvclear").onclick=()=>{d.cover="";const f=document.querySelector('[data-f="cover"]');if(f)f.value="";keep();drawCover();toast("Cover picture removed")};
+function updateSharePreview(){
+ const title=$("#shareTitle").value.trim()||`${d.groom||""} ♡ ${d.bride||""}`.trim()||"Wedding Invitation";
+ $("#sharePreviewTitle").textContent=title;
+ $("#sharePreviewDescription").textContent=$("#shareDescription").value.trim()||"Wedding invitation";
+}
+["shareTitle","shareDescription"].forEach(id=>$("#"+id).addEventListener("input",()=>{d[id]=$("#"+id).value;keep();updateSharePreview()}));
 let link="";
 $("#share").onclick=async()=>{
  try{
   const ownerSession = await ensureOwner();
   const slug="inv-"+crypto.randomUUID().replace(/-/g,"").slice(0,16);
   const data=clean();
+  data.shareTitle=$("#shareTitle").value.trim()||`${d.groom||""} ♡ ${d.bride||""}`.trim();
+  data.shareDescription=$("#shareDescription").value.trim();
 const {error}=await sb.from("invitations").insert({owner_id:ownerSession.id,slug,groom_name:d.groom||"",bride_name:d.bride||"",wedding_date:d.when||null,invitation_data:data,cover_image_url:d.cover||d.cine?.[0]||d.photo||null});
   if(error)throw error;
 link="https://khmer-wedding-preview.vitkp2020.workers.dev/?slug="+encodeURIComponent(slug);
@@ -650,18 +654,4 @@ function refreshDel(){DELK.forEach(k=>{const b=document.querySelector(`[data-del
 (async()=>{d=merge(store.get("khmer-draft3")||{});lang=d.lang||"km";editLang=lang;fill();syncLang();tpls();drawCover();if(!(await route())){draw();await showOwnerGate()}})();
 addEventListener("hashchange",()=>location.reload());
 
-document.getElementById("msgshare").addEventListener("click", async () => {
-  const link = $("#link").value.trim();
-if (!link) {
-    toast("Please create share link first!");
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(link);
-  } catch (e) {
-    $("#link").select();
-  }
-window.open("https://www.messenger.com/", "_blank");
-toast("Link copied! Paste it into Messenger.");
-});
 </script></body></html>

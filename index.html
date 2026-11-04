@@ -312,7 +312,14 @@ body.owner-locked #app{display:none}body.view #ownerGate{display:none}
   <div style="font-size:12px;color:var(--ui-mut)">Type both names in this one box. A gold ♥ is added between them. To mark the split yourself, put &amp; or + between the names. Leave empty to use the couple names.</div>
   <label class="ck"><input type="checkbox" id="cvplay"> Show ▶ play button</label>
   <canvas id="cvp" width="1200" height="630" style="width:100%;border-radius:10px;border:1px solid var(--ui-line)"></canvas>
-  <div class="row"><button id="cvsave">Make saveable picture</button><button id="cvshare">Share picture and link</button></div>
+<div class="row">
+  <button id="cvsave">Make saveable picture</button>
+  <button id="cvshare">Share picture and link</button>
+</div>
+<div class="row">
+  <button id="msgshare" type="button">Messenger — Share Picture + Link</button>
+</div>
+
   <button id="cvclear">Remove cover picture</button>
   <img id="cvimg" alt="" hidden style="width:100%;border-radius:10px">
   <button id="cvdel" hidden>Delete this picture</button>
@@ -643,3 +650,19 @@ function refreshDel(){DELK.forEach(k=>{const b=document.querySelector(`[data-del
 (async()=>{d=merge(store.get("khmer-draft3")||{});lang=d.lang||"km";editLang=lang;fill();syncLang();tpls();drawCover();if(!(await route())){draw();await showOwnerGate()}})();
 addEventListener("hashchange",()=>location.reload());
 </script></body></html>
+$("#msgshare").onclick = async () => {
+  const link = $("#link").value.trim();
+
+  if (!link) {
+    toast("Please create share link first!");
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(link);
+  } catch (e) {
+    $("#link").select();
+  }
+window.open("https://www.messenger.com/", "_blank");
+toast("Link copied! Paste it into Messenger.");
+};
+

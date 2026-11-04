@@ -652,8 +652,7 @@ addEventListener("hashchange",()=>location.reload());
 </script></body></html>
 $("#msgshare").onclick = async () => {
   const link = $("#link").value.trim();
-
-  if (!link) {
+if (!link) {
     toast("Please create share link first!");
     return;
   }

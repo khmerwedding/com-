@@ -649,7 +649,7 @@ DELK.forEach(k=>{const inp=document.querySelector(`[data-f="${k}"]`);if(!inp)ret
 function refreshDel(){DELK.forEach(k=>{const b=document.querySelector(`[data-del="${k}"]`);if(b){const v=d[k];b.hidden=!(Array.isArray(v)?v.length:v)}})}
 (async()=>{d=merge(store.get("khmer-draft3")||{});lang=d.lang||"km";editLang=lang;fill();syncLang();tpls();drawCover();if(!(await route())){draw();await showOwnerGate()}})();
 addEventListener("hashchange",()=>location.reload());
-</script></body></html>
+
 $("#msgshare").onclick = async () => {
   const link = $("#link").value.trim();
 if (!link) {
@@ -664,4 +664,4 @@ if (!link) {
 window.open("https://www.messenger.com/", "_blank");
 toast("Link copied! Paste it into Messenger.");
 };
-
+</script></body></html>

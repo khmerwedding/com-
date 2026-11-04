@@ -140,7 +140,7 @@ body.view .stage{width:100vw;height:100dvh;max-height:none;aspect-ratio:auto;bor
 /* gallery */
 .slideshow{max-width:650px;margin:24px auto 12px}.sw{overflow:hidden;border:1px solid #d8bc79;border-radius:14px;box-shadow:0 20px 52px #0c160db8;background:#10243f;touch-action:pan-y}
 .st{display:flex;transition:transform .85s cubic-bezier(.22,.72,.18,1)}.sl{flex:0 0 100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;background:#10243f}.sl img{width:100%;height:100%;object-fit:contain}
-.sc2{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:14px;color:#f3dfac}.sc2 button{border:1px solid #d5ab58;background:linear-gradient(135deg,var(--pn1),var(--pn2));color:#f5d996;border-radius:50%;height:38px;width:38px;padding:0}
+.sc2{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:14px;color:#f3dfac}.sc2 button{touch-action:manipulation;border:1px solid #d5ab58;background:linear-gradient(135deg,var(--pn1),var(--pn2));color:#f5d996;border-radius:50%;height:38px;width:38px;padding:0}
 .dots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:12px auto}.dots button{width:9px;height:9px;border-radius:50%;background:#a49a75;border:0;padding:0;opacity:.6}.dots button.active{background:#f4d68d;opacity:1;transform:scale(1.3)}
 /* gift */
 .gcard{max-width:460px;margin:22px auto 0;padding:22px 16px 26px;border:1px solid var(--gd2);border-radius:24px;background:linear-gradient(145deg,var(--pn1),var(--pn2));box-shadow:0 20px 50px #0004}
@@ -162,7 +162,7 @@ body.view .stage{width:100vw;height:100dvh;max-height:none;aspect-ratio:auto;bor
 .ref-envelope{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:envT 7s ease-in-out infinite;transition:transform .8s}
 @keyframes envF{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}@keyframes envT{0%,100%{transform:rotate(-1deg) rotateY(-2deg)}50%{transform:rotate(.7deg) rotateY(2deg)}}
 .ref-back{position:absolute;inset:0;border-radius:3px;border:2px solid #d8b15c;background:linear-gradient(125deg,#364b76,#1b2b4c 50%,#293d66);box-shadow:inset 0 0 0 7px #182746,inset 0 0 0 9px #b88c3d,inset 0 0 35px #080d25}
-.ref-letter{position:absolute;inset:4% 5% 2%;z-index:2;background:linear-gradient(155deg,#30466f,#172849);border:double 5px #d6b15e;color:#f7e8c0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;box-shadow:inset 0 0 0 6px #1a2a4a,inset 0 0 0 7px #ae8439,0 8px 22px #0008;transition:transform 1.2s .65s cubic-bezier(.22,.8,.18,1)}
+.ref-letter{position:absolute;inset:4% 5% 2%;z-index:2;background:linear-gradient(155deg,#30466f,#172849);border:double 5px #d6b15e;color:#f7e8c0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px;box-shadow:inset 0 0 0 6px #1a2a4a,inset 0 0 0 7px #ae8439,0 8px 22px #0008;opacity:0;transition:transform 1.2s .65s cubic-bezier(.22,.8,.18,1),opacity .5s .5s}
 .ref-letter small{letter-spacing:.17em;font-size:10px}.ref-letter strong{font-family:var(--tf),'Moul',serif;font-weight:400;font-size:clamp(13px,4.6cqw,22px);line-height:1.9}
 .ref-pocket{position:absolute;inset:0;z-index:3}
 .ref-left{clip-path:polygon(0 0,58% 61%,0 100%);background:linear-gradient(95deg,#0e1b38a6,transparent 70%),linear-gradient(125deg,#344b78,#182a4d)}
@@ -180,7 +180,7 @@ body.view .stage{width:100vw;height:100dvh;max-height:none;aspect-ratio:auto;bor
 .ref-open{border:1px solid #d6b15e;background:linear-gradient(135deg,#263c67,#172747);color:#f8e5b5;border-radius:99px;padding:12px 24px;font:inherit;box-shadow:inset 0 1px #ffe6a62b,0 8px 24px #101a10aa;animation:bg 3.4s ease-in-out infinite;cursor:pointer}
 @keyframes bg{50%{box-shadow:0 8px 24px #101a10aa,0 0 19px #f3d48666}}
 .ov.is-opening .ref-seal{transform:translateY(-75px) rotate(22deg) scale(.7);opacity:0;pointer-events:none;animation:none}
-.ov.is-opening .ref-flap{transform:rotateX(180deg);z-index:1}.ov.is-opening .ref-letter{transform:translateY(-42%)}
+.ov.is-opening .ref-flap{transform:rotateX(180deg);z-index:1}.ov.is-opening .ref-letter{transform:translateY(-42%);opacity:1}
 .ov.is-opening .ref-stage,.ov.is-opening .ref-envelope{animation:none}
 .ov.still,.ov.still *{transition:none!important}
 .inv.framed{background-size:cover;background-position:center;background-repeat:no-repeat}
@@ -205,7 +205,7 @@ body.framed.view .stage{width:min(100vw,calc(100dvh*9/16));height:min(100dvh,cal
 body.owner-locked #app{display:none}body.view #ownerGate{display:none}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head>
 <body class="owner-locked">
-<div id="ownerGate" hidden><h2>Owner Login</h2><p>Sign in to create and edit wedding invitations. Guests can only view shared invitations.</p><label>Email<input id="ownerEmail" type="email" autocomplete="username"></label><label>Password<input id="ownerPassword" type="password" autocomplete="current-password"></label><div class="row" style="margin-top:12px"><button class="pri" id="ownerLogin">Sign in</button><button id="ownerLogout" hidden>Sign out</button></div><p id="ownerStatus" role="status"></p><button id="forgotPassword" type="button">Forgot password?</button><div id="resetPanel" hidden><h3>Set a new password</h3><label>New password<input id="newPassword" type="password" autocomplete="new-password" minlength="8"></label><button class="pri" id="saveNewPassword" type="button">Save new password</button><p id="resetStatus" role="status"></p></div></div>
+<div id="ownerGate" hidden><h2>Owner Login</h2><p>Sign in to create and edit wedding invitations. Guests can only view shared invitations.</p><label>Email<input id="ownerEmail" type="email" autocomplete="username"></label><label>Password<input id="ownerPassword" type="password" autocomplete="current-password"></label><div class="row" style="margin-top:12px"><button class="pri" id="ownerLogin">Sign in</button><button id="ownerLogout" hidden>Sign out</button></div><p id="ownerStatus" role="status"></p></div>
 <div id="app">
 <div id="ed">
  <div class="tabs" role="tablist"><button id="tb-text" class="on" role="tab">Edit text</button><button id="tb-card" role="tab">Edit card design</button></div>
@@ -312,17 +312,7 @@ body.owner-locked #app{display:none}body.view #ownerGate{display:none}
   <div style="font-size:12px;color:var(--ui-mut)">Type both names in this one box. A gold ♥ is added between them. To mark the split yourself, put &amp; or + between the names. Leave empty to use the couple names.</div>
   <label class="ck"><input type="checkbox" id="cvplay"> Show ▶ play button</label>
   <canvas id="cvp" width="1200" height="630" style="width:100%;border-radius:10px;border:1px solid var(--ui-line)"></canvas>
-  <button id="cvclear">Remove cover picture</button>
-  <div style="font-weight:600;margin-top:12px">Customize Share Preview</div>
-  <div style="font-size:12px;color:var(--ui-mut)">Store name is already editable under “Couple and text”. These fields are for each new share link.</div>
-  <label>Share title (customer or store name)<input id="shareTitle" maxlength="180" placeholder="Wedding DAVIT AND LINDA"></label>
-  <label>Share description<textarea id="shareDescription" maxlength="500" rows="3" placeholder="Wedding invitation details"></textarea></label>
-  <div style="font-weight:600">Live share preview</div>
-  <div style="border:1px solid var(--ui-line);border-radius:10px;overflow:hidden;background:var(--ui-card)">
-    <div id="sharePreviewTitle" style="font-weight:700;padding:10px 12px 2px;overflow-wrap:anywhere"></div>
-    <div id="sharePreviewDescription" style="padding:0 12px 12px;color:var(--ui-mut);font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere"></div>
-  </div>
-  <div style="font-size:12px;color:var(--ui-mut)">This is an example preview. Messenger may still show the URL. The Cloudflare Worker also needs an update to publish custom titles and descriptions.</div>
+<button id="cvclear">Remove cover picture</button>
   <button class="pri" id="share">Create share link</button>
   <input id="link" readonly placeholder="Link appears here">
   <div class="row"><button id="copy">Copy</button><button id="tg">Telegram</button></div>
@@ -348,11 +338,6 @@ async function ensureOwner() {
 }
 
 async function showOwnerGate() {
-  if (passwordRecoveryMode) {
-    displayRecovery();
-    return;
-  }
-
   document.body.classList.add("owner-locked");
   document.querySelector("#ownerGate").hidden = false;
 
@@ -362,19 +347,6 @@ async function showOwnerGate() {
     document.querySelector("#ownerGate").hidden = true;
   } catch (e) {}
 }
- // Password recovery: Supabase emits PASSWORD_RECOVERY when the emailed link is opened.
-let passwordRecoveryMode=false;
-function displayRecovery(){
- passwordRecoveryMode=true;
- document.body.classList.add("owner-locked");
- document.querySelector("#ownerGate").hidden=false;
- document.querySelector("#resetPanel").hidden=false;
- document.querySelector("#forgotPassword").hidden=true;
- document.querySelector("#ownerLogin").hidden=true;
-}
-sb.auth.onAuthStateChange((event)=>{
- if(event==="PASSWORD_RECOVERY")displayRecovery();
-});
 const FONTS=["Moul","Battambang","Koulen","Siemreap","Bokor","Moulpali","Dangrek","Hanuman","Noto Serif Khmer","Kantumruy Pro","Taprom","Content"];
 const STYLES={royal:{n:"Royal navy and gold",nv:"#08182f",nv2:"#102744",nv3:"#1d3659",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#33456b",pn2:"#1a2948"},olive:{n:"Olive and gold",nv:"#192319",nv2:"#2c3924",nv3:"#596744",gd2:"#cdb478",tx:"#f5e7bf",pn1:"#3a4b30",pn2:"#223020"},burgundy:{n:"Burgundy and gold",nv:"#260610",nv2:"#4a0f1a",nv3:"#7a1c2b",gd2:"#d9b15a",tx:"#fbefd0",pn1:"#5f1524",pn2:"#330a12"},plum:{n:"Plum and gold",nv:"#1f0d1e",nv2:"#3a1a38",nv3:"#5b2a55",gd2:"#e0b878",tx:"#f8e8d0",pn1:"#4a2248",pn2:"#2a1128"},frame:{n:"Golden frame (cream)",nv:"#fff3c4",nv2:"#fbe7a1",nv3:"#fff8dc",gd2:"#b8860b",tx:"#5a3b0a",pn1:"#fff5cf",pn2:"#f7e3a0"},emerald:{n:"Emerald and gold",nv:"#07211a",nv2:"#0f3d30",nv3:"#1b5a47",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#1f5a48",pn2:"#0e3328"},black:{n:"Black and gold",nv:"#0a0a0a",nv2:"#1a1a1a",nv3:"#2b2b2b",gd2:"#d4af37",tx:"#f5ecd2",pn1:"#2a2a2a",pn2:"#141414"}};
 const FXN={hearts:["❤️","Falling hearts"],butterflies:["🦋","Flying butterflies"],petals:["🌸","Falling petals"],leaves:["🍃","Falling leaves"],stars:["✦","Sparkling stars"],glow:["","Glowing light"]};
@@ -391,7 +363,7 @@ program:"# កម្មវិធីទី១\nថ្ងៃអាទិត្យ 
 story:"Our Love Story\nសេចក្ដីស្រឡាញ់របស់យើង\nសេចក្ដីស្រឡាញ់ដ៏ស្រស់បំព្រងរបស់យើង\n\nForever Together\nពីថ្ងៃនេះ រហូតដល់ជារៀងរហូត\nរួមដំណើរជីវិតដោយក្ដីស្រឡាញ់ និងសុភមង្គល\n\nThe Wedding Day\nថ្ងៃមង្គលរបស់យើង\n\n\nWith Love\nសូមគោរពអញ្ជើញ\nចូលរួមជាសក្ខីភាពនៃថ្ងៃដ៏មានអត្ថន័យរបស់យើង",
 thanks:"សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយសទាំងអស់ចូលរួមអបអរសាទរពិធីមង្គលការរបស់យើងខ្ញុំដោយក្ដីសោមនស្សរីករាយ។",
 map:"",phone:"",tg:"",fb:"",khqrName:"",store:"",photo:"",logo:"",bg:"",bgo:60,cine:[],gallery:[],khqr:"",music:"",
-sh:{env:1,cine:1,photo:1,countdown:1,program:1,gallery:1,khqr:1,location:1,contact:1,frame:1,frameimg:0},fr:"",cover:"",cvz:100,cvx:50,cvy:40,cvt:"",cvg:"",cvb:"",cvplay:1,shareTitle:"",shareDescription:"",intro:[],lang:"km",en:{title:"The Wedding Ceremony",lead:"Distinguished guests, ladies and gentlemen, you are warmly invited to join us in celebrating the wedding of our son and daughter, and to give us your blessings.",thanks:"We warmly invite all our honored guests to celebrate our wedding day with joy.",story:"Our Love Story\nOur love story\nThe beautiful love we share\n\nForever Together\nFrom this day forward\nSharing life with love and happiness\n\nThe Wedding Day\nOur wedding day\n\n\nWith Love\nYou are invited\nTo witness this meaningful day with us"},shape:"arch",gap:100,pal:{nv:"#08182f",nv2:"#102744",nv3:"#1d3659",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#33456b",pn2:"#1a2948"},
+sh:{env:1,cine:1,photo:1,countdown:1,program:1,gallery:1,khqr:1,location:1,contact:1,frame:1,frameimg:0},fr:"",cover:"",cvz:100,cvx:50,cvy:40,cvt:"",cvg:"",cvb:"",cvplay:1,intro:[],lang:"km",en:{title:"The Wedding Ceremony",lead:"Distinguished guests, ladies and gentlemen, you are warmly invited to join us in celebrating the wedding of our son and daughter, and to give us your blessings.",thanks:"We warmly invite all our honored guests to celebrate our wedding day with joy.",story:"Our Love Story\nOur love story\nThe beautiful love we share\n\nForever Together\nFrom this day forward\nSharing life with love and happiness\n\nThe Wedding Day\nOur wedding day\n\n\nWith Love\nYou are invited\nTo witness this meaningful day with us"},shape:"arch",gap:100,pal:{nv:"#08182f",nv2:"#102744",nv3:"#1d3659",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#33456b",pn2:"#1a2948"},
 fx:{hearts:0,butterflies:1,petals:0,leaves:0,stars:1,glow:0},trail:1,speed:100,qty:8,fsize:100,
 T:{title:{...T0,a:"smoke",dur:2.5,dl:.3,dir:"down"},names:{...T0},msg:{...T0},parents:{...T0},date:{...T0},place:{...T0},store:{...T0}}};
 const $=s=>document.querySelector(s),esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -432,7 +404,7 @@ const TR=[
 ['សូមផ្ទៀងផ្ទាត់ឈ្មោះអ្នកទទួលក្នុងកម្មវិធីធនាគារ មុនពេលផ្ទេរប្រាក់។','Please confirm the recipient name in your banking app before transferring.'],
 ['↓ រក្សាទុក QR Code','↓ Save QR Code'],['↗ ចែករំលែក QR','↗ Share QR'],
 ['នៅលើ iPhone អាចចុចរូប QR ឱ្យជាប់ ដើម្បី Save to Photos។','On iPhone, press and hold the QR image to Save to Photos.'],
-['ទីតាំងប្រារព្ធពិធី</h3>','Ceremony Location</h3>'],['បើក Google Maps','Open Google Maps'],['↗ ចែករំលែកធៀប','↗ Share invitation'],
+['ទីតាំងប្រារព្ធពិធី</h3>','Ceremony Location</h3>'],['បើក Google Maps','Open Google Maps'],
 ['ទំនាក់ទំនងម្ចាស់កម្មពិធី</h3>','Contact the Hosts</h3>'],['ដោយមេត្រីភាព។ សូមអរគុណ!<br>','With love and gratitude.<br>'],
 ['សូមចុចត្រាស្រោមសំបុត្រ ដើម្បីបើកធៀបការ','Tap the seal to open the invitation'],['✉ បើកសេចក្ដីអញ្ជើញ','✉ Open Invitation']];
 const trn=h=>TR.reduce((x,[a,b])=>x.split(a).join(b),h);
@@ -443,19 +415,19 @@ function html2(d){const s=d.style==="custom"?{...STYLES.royal,...d.pal}:(STYLES[
  const fam=d.parents.trim().split(/\n\s*\n/).slice(0,2).map(f=>`<div>${lines(f)}</div>`).join("");
  const cine=sh.cine?`<section class="cin"><div>${cinePics(d)}</div><div class="shade"></div>
   <div class="cin-copy"><span class="cin-small">THE WEDDING OF</span><h2 class="moul wave">${esc(d.groom)}</h2><span class="cin-heart">♡</span><h2 class="moul wave">${esc(d.bride)}</h2><p>${D.short}</p></div><div class="cin-bar" style="animation-duration:${Math.max(1,(((d.intro||[]).filter(Boolean).length?d.intro:d.cine)||[]).filter(Boolean).length)*6}s"></div></section>`:"";
- const hero=`<section class="hero"><div class="ornament"></div><div class="hero-inner reveal"><div class="bgw">${d.bg?`<div class="bgi" style="background-image:url('${esc(d.bg)}')"></div>`:""}${logo}<div class="eyebrow">TOGETHER WITH OUR FAMILIES</div><div class="flower"></div><h3 class="moul shimmer">សេចក្ដីអញ្ជើញ</h3>${ta("parents",`<div class="family">${fam}</div>`)}</div>
+ const hero=`<section class="hero"><div class="ornament"></div><div class="hero-inner reveal"><div class="bgw">${d.bg?`<div class="bgi" style="background-image:url('${esc(d.bg)}')"></div>`:""}${logo}<div class="eyebrow">TOGETHER WITH OUR FAMILIES</div><div class="flower">❦</div><h3 class="moul shimmer">សេចក្ដីអញ្ជើញ</h3>${ta("parents",`<div class="family">${fam}</div>`)}</div>
   <p class="lead">មានកិត្តិយសសូមគោរពអញ្ជើញ</p>${ta("msg",`<p class="lead">${esc(d.lead)}</p>`)}${ph}
   ${ta("names",`<p class="eyebrow">កូនប្រុស</p><h2 class="moul wave">${esc(d.groom)}</h2><div class="amp"><span>ជាគូ</span></div><p class="eyebrow">កូនស្រី</p><h2 class="moul wave">${esc(d.bride)}</h2>`)}
   <div class="hdate">${D.num}</div><a class="pill" data-go="details">មើលព័ត៌មានពិធី ↓</a><div class="note">WITH LOVE &amp; GRATITUDE</div></div></section>`;
  const wr=(id,inner)=>`<section class="sc${sh.frame?" fr":""}" id="${id}"><div class="wrap reveal">${inner}</div></section>`;
- const details=wr("details",`<div class="eyebrow">SAVE THE DATE</div><h3 class="moul shimmer">ថ្ងៃមង្គលការ</h3><div class="flower"></div><div class="datebox"><span>${D.wk}<br>${D.wke}</span><strong>${D.day}</strong><span>${D.mo}<br>${D.moe} ${D.yr}</span></div>${ta("date",`<p class="lead">${lines(d.date)}</p>`)}${sh.countdown?`<div class="cd"><div class="unit"><b id="days">០០</b><small>ថ្ងៃ</small></div><div class="unit"><b id="hours">០០</b><small>ម៉ោង</small></div><div class="unit"><b id="minutes">០០</b><small>នាទី</small></div><div class="unit"><b id="seconds">០០</b><small>វិនាទី</small></div></div><div class="notice" id="notice" hidden>សូមអរគុណចំពោះការចូលរួម និងពាក្យជូនពរ។ ♡</div>`:""}`);
- const prog=sh.program&&d.program.trim()?wr("program",`<div class="eyebrow">WEDDING CEREMONY PROGRAM</div><h3 class="moul shimmer">កម្មវិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</h3><div class="flower"></div><div class="days">${progCards(d)}</div><p class="lead" style="margin-top:24px">សូមអរគុណ!</p>`):"";
+ const details=wr("details",`<div class="eyebrow">SAVE THE DATE</div><h3 class="moul shimmer">ថ្ងៃមង្គលការ</h3><div class="flower">✧ ❦ ✧</div><div class="datebox"><span>${D.wk}<br>${D.wke}</span><strong>${D.day}</strong><span>${D.mo}<br>${D.moe} ${D.yr}</span></div>${ta("date",`<p class="lead">${lines(d.date)}</p>`)}${sh.countdown?`<div class="cd"><div class="unit"><b id="days">០០</b><small>ថ្ងៃ</small></div><div class="unit"><b id="hours">០០</b><small>ម៉ោង</small></div><div class="unit"><b id="minutes">០០</b><small>នាទី</small></div><div class="unit"><b id="seconds">០០</b><small>វិនាទី</small></div></div><div class="notice" id="notice" hidden>សូមអរគុណចំពោះការចូលរួម និងពាក្យជូនពរ។ ♡</div>`:""}`);
+ const prog=sh.program&&d.program.trim()?wr("program",`<div class="eyebrow">WEDDING CEREMONY PROGRAM</div><h3 class="moul shimmer">កម្មវិធីសិរីមង្គលអាពាហ៍ពិពាហ៍</h3><div class="flower">✧ ❦ ✧</div><div class="days">${progCards(d)}</div><p class="lead" style="margin-top:24px">សូមអរគុណ!</p>`):"";
  const blocks=d.story.trim().split(/\n\s*\n/).slice(0,4);
  const story=sh.cine?`<section class="story">${[0,1,2,3].map(i=>{const b=(blocks[i]||"").split("\n"),h3=b[1]?`<h3>${esc(b[1])}</h3>`:"",p=b[2]!==undefined&&b[2]!==""?b[2]:(i===2?D.short:"");return `<div class="sf">${d.cine[i]?`<img src="${esc(d.cine[i])}" alt="" loading="lazy">`:""}<div class="sf-copy"><span class="kick">${esc(b[0])}</span>${h3}<div class="div1"></div><p>${esc(p)}</p></div><span class="dn">⌄</span></div>`}).join("")}
-  <div class="paper"><span class="kick"> OUR INVITATION </span>${ta("title",`<h3 class="shimmer">${esc(d.title)}</h3>`)}<p>${esc(d.thanks)}</p></div></section>`:"";
- const gal=sh.gallery&&d.gallery.length?wr("gallery",`<div class="eyebrow">OUR MEMORIES</div><h3 class="moul shimmer">កម្រងរូបភាពអនុស្សាវរីយ៍</h3><p class="lead">រូបភាពអនុស្សាវរីយ៍នៃក្តីស្រឡាញ់របស់យើង</p><div class="slideshow"><div class="sw" id="sw"><div class="st" id="st">${d.gallery.map(u=>`<div class="sl"><img src="${esc(u)}" alt="" loading="lazy"></div>`).join("")}</div></div><div class="sc2"><button id="sprev" aria-label="Previous">❮</button><span id="sstat"></span><button id="snext" aria-label="Next">❯</button><button id="spause" aria-label="Pause">Ⅱ</button></div><div class="dots" id="dots">${d.gallery.map((_,i)=>`<button data-i="${i}" aria-label="${i+1}"></button>`).join("")}</div></div>`):"";
- const gift=sh.khqr&&d.khqr?wr("gift",`<div class="eyebrow">WEDDING GIFT · KHQR</div><h3 class="moul shimmer">ចំណងដៃមង្គលការ</h3><div class="flower"></div><p class="lead">សម្រាប់ភ្ញៀវកិត្តិយសដែលមានបំណងផ្ញើចំណងដៃ និងពាក្យជូនពរ សូមស្កេន KHQR ខាងក្រោម។</p><div class="gcard"><img class="gqr" src="${esc(d.khqr)}" alt="KHQR"><p class="gname">${esc(d.khqrName)}</p><p class="gtip">សូមផ្ទៀងផ្ទាត់ឈ្មោះអ្នកទទួលក្នុងកម្មវិធីធនាគារ មុនពេលផ្ទេរប្រាក់។</p><div class="actions"><a class="pill" download="KHQR.png" href="${esc(d.khqr)}">↓ រក្សាទុក QR Code</a><button class="pill" data-share>↗ ចែករំលែក QR</button></div><p class="gtip">នៅលើ iPhone អាចចុចរូប QR ឱ្យជាប់ ដើម្បី Save to Photos។</p></div>`):"";
- const loc=sh.location&&(d.place||d.map)?wr("venue",`<div class="eyebrow">CEREMONY LOCATION</div><h3 class="moul shimmer">ទីតាំងប្រារព្ធពិធី</h3><div class="flower"></div>${ta("place",`<p class="lead">${esc(d.place)}</p>`)}<div class="actions">${d.map?`<a class="pill" href="${esc(d.map)}" target="_blank" rel="noopener">${ic("map")}បើក Google Maps</a>`:""}<button class="pill" data-share>↗ ចែករំលែកធៀប</button></div>`):"";
+  <div class="paper"><span class="kick">❦ OUR INVITATION ❦</span>${ta("title",`<h3 class="shimmer">${esc(d.title)}</h3>`)}<p>${esc(d.thanks)}</p></div></section>`:"";
+ const gal=sh.gallery&&d.gallery.length?wr("gallery",`<div class="eyebrow">OUR MEMORIES</div><h3 class="moul shimmer">កម្រងរូបភាពអនុស្សាវរីយ៍</h3><p class="lead">រូបភាពអនុស្សាវរីយ៍នៃក្តីស្រឡាញ់របស់យើង</p><div class="slideshow"><div class="sw" id="sw"><div class="st" id="st">${d.gallery.map(u=>`<div class="sl"><img src="${esc(u)}" alt=""></div>`).join("")}</div></div><div class="sc2"><button id="sprev" aria-label="Previous">❮</button><span id="sstat"></span><button id="snext" aria-label="Next">❯</button><button id="spause" aria-label="Pause">Ⅱ</button></div><div class="dots" id="dots">${d.gallery.map((_,i)=>`<button data-i="${i}" aria-label="${i+1}"></button>`).join("")}</div></div>`):"";
+ const gift=sh.khqr&&d.khqr?wr("gift",`<div class="eyebrow">WEDDING GIFT · KHQR</div><h3 class="moul shimmer">ចំណងដៃមង្គលការ</h3><div class="flower">❦ ♡ ❦</div><p class="lead">សម្រាប់ភ្ញៀវកិត្តិយសដែលមានបំណងផ្ញើចំណងដៃ និងពាក្យជូនពរ សូមស្កេន KHQR ខាងក្រោម។</p><div class="gcard"><img class="gqr" src="${esc(d.khqr)}" alt="KHQR"><p class="gname">${esc(d.khqrName)}</p><p class="gtip">សូមផ្ទៀងផ្ទាត់ឈ្មោះអ្នកទទួលក្នុងកម្មវិធីធនាគារ មុនពេលផ្ទេរប្រាក់។</p><div class="actions"><a class="pill" download="KHQR.png" href="${esc(d.khqr)}">↓ រក្សាទុក QR Code</a><button class="pill" data-share>↗ ចែករំលែក QR</button></div><p class="gtip">នៅលើ iPhone អាចចុចរូប QR ឱ្យជាប់ ដើម្បី Save to Photos។</p></div>`):"";
+ const loc=sh.location&&(d.place||d.map)?wr("venue",`<div class="eyebrow">CEREMONY LOCATION</div><h3 class="moul shimmer">ទីតាំងប្រារព្ធពិធី</h3><div class="flower">❦</div>${ta("place",`<p class="lead">${esc(d.place)}</p>`)}<div class="actions">${d.map?`<a class="pill" href="${esc(d.map)}" target="_blank" rel="noopener">${ic("map")}បើក Google Maps</a>`:""}</div>`):"";
  const ct=sh.contact&&(d.phone||d.tg||d.fb||d.map)?wr("contacts",`<div class="eyebrow">GET IN TOUCH</div><h3 class="moul shimmer">ទំនាក់ទំនងម្ចាស់កម្មពិធី</h3><div class="actions">${d.phone?`<button class="lbtn" aria-label="Call" data-call="${esc(d.phone)}">${ic("phone")}</button>`:""}${d.tg?`<a class="lbtn" aria-label="Telegram" href="${esc(d.tg)}" target="_blank" rel="noopener">${ic("tg")}</a>`:""}${d.fb?`<a class="lbtn" aria-label="Facebook" href="${esc(d.fb)}" target="_blank" rel="noopener">${ic("fb")}</a>`:""}${d.map?`<a class="lbtn" aria-label="Google Maps" href="${esc(d.map)}" target="_blank" rel="noopener">${ic("map")}</a>`:""}</div>`):"";
  const foot=`<footer class="foot">ដោយមេត្រីភាព។ សូមអរគុណ!<br>${esc(d.groom)} ♡ ${esc(d.bride)}<br>THANK YOU FOR CELEBRATING WITH US<br>${D.num}<div class="creator">${ta("store",`<div class="ceo">${esc(d.store||"CEO BY SOT DAVIT")}</div>`)}</div></footer>`;
  const dis=opened||!sh.env;
@@ -531,8 +503,7 @@ $("#trows").innerHTML=Object.entries(TK).map(([k,n])=>`<div class="tr"><b>${n}</
  <label>Delay (s)<input type="number" min="0" max="20" step="0.5" data-t="${k}.dl"></label></div>`).join("");
 function fill(){document.querySelectorAll("[data-k]").forEach(e=>{e.value=gv(e.dataset.k);const o=$("#o-"+e.dataset.k);if(o)o.textContent=d[e.dataset.k]+(e.dataset.k==="bgo"?"%":"")});
  document.querySelectorAll("[data-fx]").forEach(e=>e.checked=!!d.fx[e.dataset.fx]);document.querySelectorAll("[data-sh]").forEach(e=>e.checked=!!d.sh[e.dataset.sh]);$("#trail").checked=!!d.trail;$("#cvplay").checked=!!d.cvplay;
- document.querySelectorAll("[data-t]").forEach(e=>{const[k,f]=e.dataset.t.split(".");e.value=d.T[k][f]});
- $("#shareTitle").value=d.shareTitle||"";$("#shareDescription").value=d.shareDescription||"";updateSharePreview();palFill()}
+ document.querySelectorAll("[data-t]").forEach(e=>{const[k,f]=e.dataset.t.split(".");e.value=d.T[k][f]});palFill()}
 const TEXTK=["groom","bride","title","lead","parents","date","place","program","story","thanks","store"];
 const gv=k=>(editLang==="en"&&TEXTK.includes(k))?(d.en[k]||""):(d[k]??"");
 const NUM=["size","bgo","speed","qty","fsize","gap","cvz","cvx","cvy"];
@@ -599,20 +570,12 @@ function drawCover(){const c=$("#cvp");if(!c)return;const x=c.getContext("2d"),W
   x.fillStyle=pal.gd2;x.font="28px Georgia,serif";x.fillText("THE WEDDING INVITATION",52,H-125);x.shadowBlur=0;
   if(d.cvplay){x.beginPath();x.arc(W-110,H-110,56,0,6.3);x.fillStyle="rgba(0,0,0,.6)";x.fill();x.lineWidth=5;x.strokeStyle="#fff";x.stroke();x.beginPath();x.moveTo(W-128,H-142);x.lineTo(W-128,H-78);x.lineTo(W-76,H-110);x.closePath();x.fillStyle="#fff";x.fill()}})}
 $("#cvclear").onclick=()=>{d.cover="";const f=document.querySelector('[data-f="cover"]');if(f)f.value="";keep();drawCover();toast("Cover picture removed")};
-function updateSharePreview(){
- const title=$("#shareTitle").value.trim()||`${d.groom||""} ♡ ${d.bride||""}`.trim()||"Wedding Invitation";
- $("#sharePreviewTitle").textContent=title;
- $("#sharePreviewDescription").textContent=$("#shareDescription").value.trim()||"Wedding invitation";
-}
-["shareTitle","shareDescription"].forEach(id=>$("#"+id).addEventListener("input",()=>{d[id]=$("#"+id).value;keep();updateSharePreview()}));
 let link="";
 $("#share").onclick=async()=>{
  try{
   const ownerSession = await ensureOwner();
   const slug="inv-"+crypto.randomUUID().replace(/-/g,"").slice(0,16);
   const data=clean();
-  data.shareTitle=$("#shareTitle").value.trim()||`${d.groom||""} ♡ ${d.bride||""}`.trim();
-  data.shareDescription=$("#shareDescription").value.trim();
 const {error}=await sb.from("invitations").insert({owner_id:ownerSession.id,slug,groom_name:d.groom||"",bride_name:d.bride||"",wedding_date:d.when||null,invitation_data:data,cover_image_url:d.cover||d.cine?.[0]||d.photo||null});
   if(error)throw error;
 link="https://khmer-wedding-preview.vitkp2020.workers.dev/?slug="+encodeURIComponent(slug);
@@ -629,24 +592,6 @@ document.body.classList.add("view");
 $("#inv").textContent = "Loading…";
  try{const {data,error}=await sb.from("invitations").select("invitation_data").eq("slug",h).maybeSingle();if(error||!data){$("#inv").textContent="Invitation not found.";return true}d=merge(data.invitation_data);lang=d.lang||"km";editLang=lang;syncLang();draw()}catch(e){$("#inv").textContent="Could not load the invitation."}return true}
 $("#ownerLogin").onclick=async()=>{const email=$("#ownerEmail").value.trim(),password=$("#ownerPassword").value;$("#ownerStatus").textContent="Signing in…";try{const {error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;await ensureOwner();$("#ownerPassword").value="";$("#ownerStatus").textContent="";await showOwnerGate()}catch(e){await sb.auth.signOut();$("#ownerStatus").textContent=e.message}};
-$("#forgotPassword").onclick=async()=>{
- const email=$("#ownerEmail").value.trim();
- if(!email){$("#ownerStatus").textContent="Enter your email address first.";return;}
- $("#ownerStatus").textContent="Sending password reset email…";
- const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
- $("#ownerStatus").textContent=error?error.message:"Check your email for a new reset link.";
-};
-$("#saveNewPassword").onclick=async()=>{
- const password=$("#newPassword").value;
- if(password.length<8){$("#resetStatus").textContent="Use at least 8 characters.";return;}
- $("#resetStatus").textContent="Updating password…";
- const {error}=await sb.auth.updateUser({password});
- if(error){$("#resetStatus").textContent=error.message;return;}
- $("#resetStatus").textContent="Password updated. You can now sign in.";
- passwordRecoveryMode=false;
- await sb.auth.signOut();
- location.replace(location.origin+location.pathname);
-};
 $("#ownerLogout").onclick=async()=>{await sb.auth.signOut();await showOwnerGate()};
 const DELK=["photo","gallery","intro","cine","khqr","fr","logo","music"];
 DELK.forEach(k=>{const inp=document.querySelector(`[data-f="${k}"]`);if(!inp)return;const lab=inp.closest("label"),b=document.createElement("button");b.textContent="Delete";b.dataset.del=k;b.hidden=true;b.onclick=()=>{d[k]=(k==="gallery"||k==="cine"||k==="intro")?[]:"";if(k==="music"&&aud){aud.pause();aud=null}inp.value="";keep();redraw();toast("Deleted")};lab.after(b)});

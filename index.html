@@ -604,7 +604,7 @@ $("#share").onclick=async()=>{
   const data=clean();
 const {error}=await sb.from("invitations").insert({owner_id:ownerSession.id,slug,groom_name:d.groom||"",bride_name:d.bride||"",wedding_date:d.when||null,invitation_data:data,cover_image_url:d.cover||d.cine?.[0]||d.photo||null});
   if(error)throw error;
-  link=location.href.split("#")[0]+"#"+slug;
+ link="https://rjfueqdnrjdtvfqxqubs.supabase.co/functions/v1/Wedding-preview?slug="+encodeURIComponent(slug);
   $("#link").value=link;
   toast("Share link ready! Customers can view the invitation.");
  }catch(e){toast("Could not create share link: "+e.message)}

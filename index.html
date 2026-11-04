@@ -650,7 +650,7 @@ function refreshDel(){DELK.forEach(k=>{const b=document.querySelector(`[data-del
 (async()=>{d=merge(store.get("khmer-draft3")||{});lang=d.lang||"km";editLang=lang;fill();syncLang();tpls();drawCover();if(!(await route())){draw();await showOwnerGate()}})();
 addEventListener("hashchange",()=>location.reload());
 
-$("#msgshare").onclick = async () => {
+document.getElementById("msgshare").addEventListener("click", async () => {
   const link = $("#link").value.trim();
 if (!link) {
     toast("Please create share link first!");
@@ -663,5 +663,5 @@ if (!link) {
   }
 window.open("https://www.messenger.com/", "_blank");
 toast("Link copied! Paste it into Messenger.");
-};
+});
 </script></body></html>

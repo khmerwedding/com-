@@ -612,7 +612,10 @@ const {error}=await sb.from("invitations").insert({owner_id:ownerSession.id,slug
 $("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(link);toast("Copied")}catch(e){$("#link").select();toast("Copy the selected link")}};
 $("#tg").onclick=()=>{if(link)window.open("https://t.me/share/url?url="+encodeURIComponent(link),"_blank")};
 async function route(){const h=location.hash.slice(1);if(!/^inv-[a-z0-9]+$/.test(h))return false;
- viewMode=true;document.body.classList.add("view");$("#inv").textContent="Loading…";
+ viewMode = true;
+document.body.classList.remove("owner-locked");
+document.body.classList.add("view");
+$("#inv").textContent = "Loading…";
  try{const {data,error}=await sb.from("invitations").select("invitation_data").eq("slug",h).maybeSingle();if(error||!data){$("#inv").textContent="Invitation not found.";return true}d=merge(data.invitation_data);lang=d.lang||"km";editLang=lang;syncLang();draw()}catch(e){$("#inv").textContent="Could not load the invitation."}return true}
 $("#ownerLogin").onclick=async()=>{const email=$("#ownerEmail").value.trim(),password=$("#ownerPassword").value;$("#ownerStatus").textContent="Signing in…";try{const {error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;await ensureOwner();$("#ownerPassword").value="";$("#ownerStatus").textContent="";await showOwnerGate()}catch(e){await sb.auth.signOut();$("#ownerStatus").textContent=e.message}};
 $("#forgotPassword").onclick=async()=>{

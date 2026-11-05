@@ -376,7 +376,33 @@ let d=merge({}),lang="km",editLang="km",opened=false,still=false,aud=null,viewMo
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const toast=m=>{$("#toast").textContent=m};const keep=()=>store.set("khmer-draft3",d);
 const kh=n=>lang==="en"?String(n):String(n).replace(/\d/g,x=>"០១២៣៤៥៦៧៨៩"[x]);
-const STYLES={royal:{n:"Royal navy and gold",nv:"#08182f",nv2:"#102744",nv3:"#1d3659",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#33456b",pn2:"#1a2948"},olive:{n:"Olive and gold",nv:"#192319",nv2:"#2c3924",nv3:"#596744",gd2:"#cdb478",tx:"#f5e7bf",pn1:"#3a4b30",pn2:"#223020"},burgundy:{n:"Burgundy and gold",nv:"#260610",nv2:"#4a0f1a",nv3:"#7a1c2b",gd2:"#d9b15a",tx:"#fbefd0",pn1:"#5f1524",pn2:"#330a12"},plum:{n:"Plum and gold",nv:"#1f0d1e",nv2:"#3a1a38",nv3:"#5b2a55",gd2:"#e0b878",tx:"#f8e8d0",pn1:"#4a2248",pn2:"#2a1128"},frame:{n:"Golden frame (cream)",nv:"#fff3c4",nv2:"#fbe7a1",nv3:"#fff8dc",gd2:"#b8860b",tx:"#5a3b0a",pn1:"#fff5cf",pn2:"#f7e3a0"},emerald:{n:"Emerald and gold",nv:"#07211a",nv2:"#0f3d30",nv3:"#1b5a47",gd2:"#d9b15a",tx:"#f5e8c8",pn1:"#1f5a48",pn2:"#0e3328"},black:{n:"Black and gold",nv:"#0a0a0a",nv2:"#1a1a1a",nv3:"#2b2b2b",gd2:"#d4af37",tx:"#f5ecd2",pn1:"#2a2a2a",pn2:"#141414"}};
+
+document.querySelectorAll("#dots button").forEach(b => {
+  b.onclick = () => {
+    goSlide(+b.dataset.i);
+    restart();
+  };
+});
+
+let x0 = 0;
+const w = document.getElementById("sw");
+
+if (w) {
+  w.addEventListener("touchstart", e => {
+    x0 = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  w.addEventListener("touchend", e => {
+    const dx = e.changedTouches[0].screenX - x0;
+
+    if (Math.abs(dx) > 45) {
+      goSlide(slideIndex + (dx < 0 ? 1 : -1));
+      restart();
+    }
+  }, { passive: true });
+}
+}
+
 const ic=k=>`<img class="ic" src="${LOGO[k]}" alt="">`;
 const mix=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));const x=p(a),y=p(b);return "#"+x.map((v,i)=>Math.round(v+(y[i]-v)*t).toString(16).padStart(2,"0")).join("")};
 const MOF=["January","February","March","April","May","June","July","August","September","October","November","December"];

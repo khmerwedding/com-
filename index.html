@@ -442,7 +442,7 @@ const TR=[
 ['នៅលើ iPhone អាចចុចរូប QR ឱ្យជាប់ ដើម្បី Save to Photos។','On iPhone, press and hold the QR image to Save to Photos.'],
 ['ទីតាំងប្រារព្ធពិធី</h3>','Ceremony Location</h3>'],['បើក Google Maps','Open Google Maps'],
 ['ទំនាក់ទំនងម្ចាស់កម្មពិធី</h3>','Contact the Hosts</h3>'],['ដោយមេត្រីភាព។ សូមអរគុណ!<br>','With love and gratitude.<br>'],
-['សូមចុចត្រាស្រោមសំបុត្រ ដើម្បីបើកធៀបការ','Tap the seal to open the invitation'],['✉ បើកសេចក្ដីអញ្ជើញ','✉ Open Invitation']];
+['សូមចុចក្រោមស្រោមសំបុត្រ ដើម្បីបើកធៀបការ','Tap the seal to open the invitation'],['✉ បើកសេចក្ដីអញ្ជើញ','✉ Open Invitation']];
 const trn=h=>TR.reduce((x,[a,b])=>x.split(a).join(b),h);
 function html(){const h=html2(lang==="en"?{...d,...Object.fromEntries(Object.entries(d.en||{}).filter(([k,v])=>v))}:d);return lang==="en"?trn(h):h}
 function html2(d){const s=d.style==="custom"?{...STYLES.royal,...d.pal}:(STYLES[d.style]||STYLES.royal),D=dinfo(),sh=d.sh,fm=!!(d.fr&&d.sh.frameimg),g1=mix(s.gd2,"#000000",.4),g3=mix(s.gd2,"#ffffff",.55);

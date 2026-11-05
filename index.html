@@ -425,7 +425,7 @@ function html2(d){const s=d.style==="custom"?{...STYLES.royal,...d.pal}:(STYLES[
  const blocks=d.story.trim().split(/\n\s*\n/).slice(0,4);
  const story=sh.cine?`<section class="story">${[0,1,2,3].map(i=>{const b=(blocks[i]||"").split("\n"),h3=b[1]?`<h3>${esc(b[1])}</h3>`:"",p=b[2]!==undefined&&b[2]!==""?b[2]:(i===2?D.short:"");return `<div class="sf">${d.cine[i]?`<img src="${esc(d.cine[i])}" alt="" loading="lazy">`:""}<div class="sf-copy"><span class="kick">${esc(b[0])}</span>${h3}<div class="div1"></div><p>${esc(p)}</p></div><span class="dn">⌄</span></div>`}).join("")}
   <div class="paper"><span class="kick">❦ OUR INVITATION ❦</span>${ta("title",`<h3 class="shimmer">${esc(d.title)}</h3>`)}<p>${esc(d.thanks)}</p></div></section>`:"";
- const gal=sh.gallery&&d.gallery.length?wr("gallery",`<div class="eyebrow">OUR MEMORIES</div><h3 class="moul shimmer">កម្រងរូបភាពអនុស្សាវរីយ៍</h3><p class="lead">រូបភាពអនុស្សាវរីយ៍នៃក្តីស្រឡាញ់របស់យើង</p><div class="slideshow"><div class="sw" id="sw"><div class="st" id="st">${d.gallery.map(u=>`<div class="sl"><img src="${esc(u)}" alt=""></div>`).join("")}</div></div><div class="sc2"><button id="sprev" aria-label="Previous">❮</button><span id="sstat"></span><button id="snext" aria-label="Next">❯</button><button id="spause" aria-label="Pause">Ⅱ</button></div><div class="dots" id="dots">${d.gallery.map((_,i)=>`<button data-i="${i}" aria-label="${i+1}"></button>`).join("")}</div></div>`):"";
+ const gal=sh.gallery&&d.gallery.length?wr("gallery",`<div class="eyebrow">OUR MEMORIES</div><h3 class="moul shimmer">កម្រងរូបភាពអនុស្សាវរីយ៍</h3><p class="lead">រូបភាពអនុស្សាវរីយ៍នៃក្តីស្រឡាញ់របស់យើង</p><div class="slideshow"> <div class="st" id="galleryTrack">${d.gallery.map(u=>`<div class="sl"><img src="${esc(u)}" alt=""></div>`).join("")}</div></div><div class="sc2"><button id="sprev" aria-label="Previous">❮</button><span id="sstat"></span><button id="snext" aria-label="Next">❯</button><button id="spause" aria-label="Pause">Ⅱ</button></div><div class="dots" id="dots">${d.gallery.map((_,i)=>`<button data-i="${i}" aria-label="${i+1}"></button>`).join("")}</div></div>`):"";
  const gift=sh.khqr&&d.khqr?wr("gift",`<div class="eyebrow">WEDDING GIFT · KHQR</div><h3 class="moul shimmer">ចំណងដៃមង្គលការ</h3><div class="flower">❦ ♡ ❦</div><p class="lead">សម្រាប់ភ្ញៀវកិត្តិយសដែលមានបំណងផ្ញើចំណងដៃ និងពាក្យជូនពរ សូមស្កេន KHQR ខាងក្រោម។</p><div class="gcard"><img class="gqr" src="${esc(d.khqr)}" alt="KHQR"><p class="gname">${esc(d.khqrName)}</p><p class="gtip">សូមផ្ទៀងផ្ទាត់ឈ្មោះអ្នកទទួលក្នុងកម្មវិធីធនាគារ មុនពេលផ្ទេរប្រាក់។</p><div class="actions"><a class="pill" download="KHQR.png" href="${esc(d.khqr)}">↓ រក្សាទុក QR Code</a><button class="pill" data-share>↗ ចែករំលែក QR</button></div><p class="gtip">នៅលើ iPhone អាចចុចរូប QR ឱ្យជាប់ ដើម្បី Save to Photos។</p></div>`):"";
  const loc=sh.location&&(d.place||d.map)?wr("venue",`<div class="eyebrow">CEREMONY LOCATION</div><h3 class="moul shimmer">ទីតាំងប្រារព្ធពិធី</h3><div class="flower">❦</div>${ta("place",`<p class="lead">${esc(d.place)}</p>`)}<div class="actions">${d.map?`<a class="pill" href="${esc(d.map)}" target="_blank" rel="noopener">${ic("map")}បើក Google Maps</a>`:""}</div>`):"";
  const ct=sh.contact&&(d.phone||d.tg||d.fb||d.map)?wr("contacts",`<div class="eyebrow">GET IN TOUCH</div><h3 class="moul shimmer">ទំនាក់ទំនងម្ចាស់កម្មពិធី</h3><div class="actions">${d.phone?`<button class="lbtn" aria-label="Call" data-call="${esc(d.phone)}">${ic("phone")}</button>`:""}${d.tg?`<a class="lbtn" aria-label="Telegram" href="${esc(d.tg)}" target="_blank" rel="noopener">${ic("tg")}</a>`:""}${d.fb?`<a class="lbtn" aria-label="Facebook" href="${esc(d.fb)}" target="_blank" rel="noopener">${ic("fb")}</a>`:""}${d.map?`<a class="lbtn" aria-label="Google Maps" href="${esc(d.map)}" target="_blank" rel="noopener">${ic("map")}</a>`:""}</div>`):"";
@@ -436,7 +436,25 @@ function html2(d){const s=d.style==="custom"?{...STYLES.royal,...d.pal}:(STYLES[
 function tick(){const e=$("#days");if(!e)return;const t=new Date(d.when).getTime();if(isNaN(t))return;let x=t-Date.now();const n=$("#notice");if(x<=0){["days","hours","minutes","seconds"].forEach(i=>$("#"+i).textContent="០០");if(n)n.hidden=false;return}
  if(n)n.hidden=true;[Math.floor(x/864e5),Math.floor(x/36e5)%24,Math.floor(x/6e4)%60,Math.floor(x/1e3)%60].forEach((v,i)=>$("#"+["days","hours","minutes","seconds"][i]).textContent=kh(String(v).padStart(2,"0")))}
 setInterval(tick,1000);
-function goSlide(n){const N=d.gallery.length;if(!N)return;slideIndex=(n+N)%N;const st=$("#st");if(st)st.style.transform=`translateX(-${slideIndex*100}%)`;const s=$("#sstat");if(s)s.textContent=`${kh(slideIndex+1)} / ${kh(N)}`;document.querySelectorAll("#dots button").forEach((b,i)=>b.classList.toggle("active",i===slideIndex))}
+
+function goSlide(n) {
+  const N = d.gallery.length;
+  if (!N) return;
+
+  slideIndex = ((n % N) + N) % N;
+
+  const track = document.getElementById("galleryTrack");
+
+  if (track) {
+    track.style.transform = `translateX(-${slideIndex * 100}%)`;
+  }
+
+  const status = document.getElementById("sstat");
+
+  if (status) {
+    status.textContent = `${kh(slideIndex + 1)} / ${kh(N)}`;
+  }
+}
 function restart(){clearInterval(slideTimer);if(slidePlaying&&d.gallery.length>1)slideTimer=setInterval(()=>goSlide(slideIndex+1),3800)}
 function bind(){const root=$("#scr");if(!root)return;
  const ob=$("#openbtn");if(ob)ob.onclick=openIt;const sl=$("#seal");if(sl)sl.onclick=openIt;

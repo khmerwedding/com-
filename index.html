@@ -291,7 +291,7 @@ body.view .stage{width:100vw;height:100dvh;max-height:none;aspect-ratio:auto;bor
 .inv.framed .eyebrow,.inv.framed .flower{color:var(--gd2)}
 .inv.framed .unit,.inv.framed .pc,.inv.framed .gcard{border-color:var(--gd2)}
 body.framed.view .stage{width:min(100vw,calc(100dvh*9/16));height:min(100dvh,calc(100vw*16/9));margin:0 auto}
-@media(prefers-reduced-motion:reduce){.inv *{animation-duration:.01ms!important}}
+
 #ownerGate{max-width:460px;margin:24px auto;padding:20px;border:1px solid var(--ui-line);border-radius:14px;background:var(--ui-card)}
 body.owner-locked #app{display:none}body.view #ownerGate{display:none}
 /* premium animated background */
@@ -356,6 +356,13 @@ body.owner-locked #app{display:none}body.view #ownerGate{display:none}
 .ov-h{background-image:linear-gradient(100deg,#8a5f0a,#c58f1f 40%,#e0ad34 55%,#9b6a10)}
 .ov-h i{color:#e58a9a;-webkit-text-fill-color:#e58a9a}
 .nbs2{opacity:.6}
+/* fallbacks for older phones without container query units */
+.nbw{--k:calc(100vw/1086)}
+@supports (width:1cqw){.nbw{--k:calc(100cqw/1086)}}
+.inv.rose :is(.hero,.sc,.paper,.foot)::before,.inv.rose :is(.hero,.sc,.paper,.foot)::after{width:calc(100vw*.27);width:calc(100cqw*.27)}
+.ref-open{font-size:clamp(12px,3.6vw,17px);font-size:clamp(12px,3.6cqw,17px)}
+.ov-h{font-size:clamp(1.05rem,5.2vw,1.9rem);font-size:clamp(1.05rem,5.2cqw,1.9rem)}
+.ov-eyebrow{font-size:clamp(9px,2.6vw,12px);font-size:clamp(9px,2.6cqw,12px)}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head>
 <body class="owner-locked">
 <div id="ownerGate" hidden><h2>Owner Login</h2><p>Sign in to create and edit wedding invitations. Guests can only view shared invitations.</p><label>Email<input id="ownerEmail" type="email" autocomplete="username"></label><label>Password<input id="ownerPassword" type="password" autocomplete="current-password"></label><div class="row" style="margin-top:12px"><button class="pri" id="ownerLogin">Sign in</button><button id="ownerLogout" hidden>Sign out</button></div><p id="ownerStatus" role="status"></p></div>

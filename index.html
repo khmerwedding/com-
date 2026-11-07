@@ -315,6 +315,14 @@ body.owner-locked #app{display:none}body.view #ownerGate{display:none}
 .ov-h i{color:#e58a9a;-webkit-text-fill-color:#e58a9a}
 .ref-stage{filter:drop-shadow(0 20px 22px #0b4d4a77)}
 .ref-stage:before{content:"";position:absolute;inset:-16% -12%;background:radial-gradient(ellipse at center,rgba(10,115,108,.42),rgba(10,115,108,0) 68%);z-index:-1;pointer-events:none}
+/* no shadows anywhere in the design */
+.inv.rose *,.inv.rose *::before,.inv.rose *::after,.ov,.ov *,.ov *::before,.ov *::after{box-shadow:none!important;text-shadow:none!important}
+.ov .ref-stage,.ov .ref-ff,.ov .ov-h,.ov .ref-seal,.inv.rose .wave,.inv.rose .shimmer,.inv.rose .amp:before,.inv.rose .amp:after{filter:none!important}
+.ov .ref-stage:before{display:none}
+.ov.is-opening .nbg{filter:none}
+@keyframes goldP{from{opacity:.05}to{opacity:.95}}
+@keyframes bfl{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.8)}}
+.inv.rose :is(.hero,.sc,.paper,.foot){background:linear-gradient(180deg,#fbfffd,#f1faf7);-webkit-backdrop-filter:none;backdrop-filter:none;outline:1px solid #e0bb63aa;outline-offset:-8px}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head>
 <body class="owner-locked">
 <div id="ownerGate" hidden><h2>Owner Login</h2><p>Sign in to create and edit wedding invitations. Guests can only view shared invitations.</p><label>Email<input id="ownerEmail" type="email" autocomplete="username"></label><label>Password<input id="ownerPassword" type="password" autocomplete="current-password"></label><div class="row" style="margin-top:12px"><button class="pri" id="ownerLogin">Sign in</button><button id="ownerLogout" hidden>Sign out</button></div><p id="ownerStatus" role="status"></p></div>
